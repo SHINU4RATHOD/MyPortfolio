@@ -14,6 +14,7 @@ export default function CertificationsSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const currentSectionRef = sectionRef.current; // Capture ref value
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -27,13 +28,13 @@ export default function CertificationsSection() {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSectionRef) { // Use captured value in cleanup
+        observer.unobserve(currentSectionRef);
       }
     };
   }, []);

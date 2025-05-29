@@ -5,7 +5,7 @@ import type { Project } from '@/config/portfolio';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Github, ExternalLink } from 'lucide-react'; // Added ExternalLink for live links
+import { Github, ExternalLink } from 'lucide-react';
 
 interface ProjectCardProps {
   project: Project;
@@ -15,19 +15,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const ProjectIcon = project.icon;
 
   return (
-    <Card className="flex flex-col h-full bg-card hover:shadow-primary/20 hover:shadow-lg transition-shadow duration-300">
+    <Card className="flex flex-col h-full bg-card hover:shadow-primary/20 hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+      {project.imageUrl && (
+        <div className="relative w-full h-48"> {/* Image container, direct child of Card */}
+          <Image
+            src={project.imageUrl}
+            alt={project.title}
+            fill
+            className="object-cover" // Modern way to handle object-fit
+            data-ai-hint={project.imageHint || "project technology"}
+            priority={project.id === projectsData[0]?.id} // Prioritize first project image if applicable
+          />
+        </div>
+      )}
       <CardHeader>
-        {project.imageUrl && (
-          <div className="relative w-full h-48 mb-4 overflow-hidden rounded-md">
-            <Image
-              src={project.imageUrl}
-              alt={project.title}
-              layout="fill"
-              objectFit="cover"
-              data-ai-hint={project.imageHint || "project technology"}
-            />
-          </div>
-        )}
         <div className="flex items-center space-x-3">
           {ProjectIcon && <ProjectIcon className="h-8 w-8 text-primary" />}
           <CardTitle className="text-xl">{project.title}</CardTitle>
@@ -69,3 +70,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     </Card>
   );
 }
+
+// Minimal data for priority prop logic, actual data is in config.
+// This is just to avoid an undefined error if projectsData is not directly imported here.
+const projectsData = [{id: 'project-asd'}];
