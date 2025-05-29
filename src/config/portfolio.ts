@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Briefcase, GraduationCap, Linkedin, Github, Mail, Code, BarChartBig, Database, Cpu, Layers, Brain, Pipette, LinkIcon, MessageCircle, MessageSquareText, Server, Box, Palette, LineChart, AreaChart, Award, BotMessageSquare, SmilePlus, Wrench, TrendingUp, FileText, BrainCircuit } from 'lucide-react';
+import { Briefcase, GraduationCap, Linkedin, Github, Mail, Code, BarChartBig, Database, Cpu, Layers, Brain, Pipette, LinkIcon, MessageCircle, MessageSquareText, Server, Box, Palette, LineChart, AreaChart, Award, BotMessageSquare, SmilePlus, Wrench, TrendingUp, FileText, BrainCircuit, SearchCode, ClipboardCheck } from 'lucide-react';
 
 // Types
 export interface NavLink {
@@ -23,23 +23,23 @@ export interface Project {
   description: string;
   imageUrl: string;
   imageHint?: string;
-  technologies: string[]; // Changed from techStack to technologies
-  githubLink?: string; // Changed from repoLink to githubLink for clarity
-  liveLink?: string; // Added for consistency, though not used for all projects in prompt
+  technologies: string[];
+  githubLink?: string;
+  liveLink?: string;
   icon?: LucideIcon;
-  impact?: string; // Added for project impact
+  impact?: string;
 }
 
 export interface TimelineEvent {
   id: string;
-  type: 'work' | 'education'; // Kept type for potential future use, but will separate sections
+  type: 'work' | 'education';
   date: string;
   title: string;
   institution: string;
   description: string;
   icon: LucideIcon;
-  skills?: string[]; // Added for education section
-  cgpa?: string; // Added for education section
+  skills?: string[];
+  cgpa?: string;
 }
 
 export interface Certification {
@@ -61,10 +61,7 @@ export interface SocialLink {
 // Data
 export const professionalName = "Shinu Rathod";
 export const professionalTitle = "Data Scientist & AI Engineer";
-// Short summary for Hero section
 export const professionalSummaryHero = "Building AI-Driven Solutions for Tomorrow. Specializing in Machine Learning, Deep Learning, NLP, and LLMs.";
-
-// Full bio for About Me section will be directly in the component as it's longer.
 
 export const navLinks: NavLink[] = [
   { href: "#hero", label: "Home" },
@@ -89,7 +86,7 @@ export const skillsData: SkillCategory[] = [
     skills: [
       { name: "Python", icon: Code },
       { name: "SQL", icon: Database },
-      { name: "R", icon: Code }, // Using Code as generic for R
+      { name: "R", icon: Code },
     ],
   },
   {
@@ -109,8 +106,8 @@ export const skillsData: SkillCategory[] = [
     skills: [
       { name: "Flask", icon: Server },
       { name: "Docker", icon: Box },
-      { name: "Pinecone", icon: Database }, // Using Database for vector DBs
-      { name: "ChromaDB", icon: Database }, // Using Database for vector DBs
+      { name: "Pinecone", icon: Database },
+      { name: "ChromaDB", icon: Database },
     ],
   },
   {
@@ -127,23 +124,23 @@ export const experienceTimeline: TimelineEvent[] = [
   {
     id: 'work-2',
     type: 'work',
-    date: 'Apr 2025 – May 2025', // Corrected date order based on prompt
+    date: 'Apr 2025 – May 2025',
     title: 'Data Scientist Intern',
     institution: 'AISPRY, Hyderabad, Telangana',
     description: 'Developed an AI-powered Autism Spectrum Detection system using TensorFlow Lite, achieving 91.8% accuracy.',
     icon: Briefcase,
   },
   {
-    id: 'work-1', // Corrected ID
+    id: 'work-1',
     type: 'work',
-    date: 'Aug 2024 – Nov 2024', // Corrected date order based on prompt
+    date: 'Aug 2024 – Nov 2024',
     title: 'Data Science & Analytics Intern',
     institution: 'Zidio Development, Bengaluru, Karnataka',
     description: 'Engineered AI-driven solutions using Python and TensorFlow, improving system efficiency by 15%.',
     icon: Briefcase,
   },
   {
-    id: 'work-3', // New ID for logical ordering
+    id: 'work-3',
     type: 'work',
     date: 'Feb 2023 – Feb 2024',
     title: 'Data Science Trainee',
@@ -157,36 +154,58 @@ export const projectsData: Project[] = [
   {
     id: 'project-asd',
     title: 'AI-driven Autism Spectrum Detection (ASD)',
-    description: 'Engineered a machine learning system using TensorFlow Lite and MediaPipe to predict ASD with 91.8% accuracy. Integrated NLP and a Gemini-powered chatbot.',
+    description: 'Developed a machine learning system to predict Autism Spectrum Disorder using video and webcam input, leveraging MediaPipe for pose estimation and TensorFlow Lite for binary classification. Integrated a React frontend, Flask backend, and Gemini-powered chatbot for scalable user interaction.',
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'healthcare AI autism',
+    imageHint: 'AI healthcare autism',
     technologies: ['Python', 'TensorFlow Lite', 'MediaPipe', 'NLP', 'React', 'Flask', 'Gemini API'],
-    githubLink: 'http://bit.ly/shinu-github', // General GitHub link as requested
-    icon: SmilePlus, // Or BrainCircuit
-    impact: 'Achieved 91.8% accuracy in ASD prediction.'
+    githubLink: 'http://bit.ly/shinu-github',
+    icon: BrainCircuit,
+    impact: 'Achieved 91.8% model accuracy, supporting early ASD diagnosis for clinicians.'
+  },
+  {
+    id: 'project-ai-tutor',
+    title: 'Behavior Detection for AI Tutor',
+    description: 'Built a behavior detection system for an AI Tutor platform using classification models to analyze user interactions. Deployed the model to improve personalized learning experiences, supported by data visualizations.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'AI tutor behavior',
+    technologies: ['Python', 'TensorFlow', 'Pandas', 'Power BI'],
+    githubLink: 'http://bit.ly/shinu-github',
+    icon: BotMessageSquare, 
+    impact: 'Increased user engagement by 10% through tailored recommendations.'
   },
   {
     id: 'project-downtime',
     title: 'Optimization of Machine Downtime',
-    description: 'Developed a predictive maintenance model using Scikit-learn, reducing downtime by 20%.',
+    description: 'Designed a predictive maintenance model to minimize machine downtime using classification algorithms. Implemented feature engineering to identify critical failure patterns, visualized with Power BI.',
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'industrial maintenance AI',
+    imageHint: 'industrial AI maintenance',
     technologies: ['Python', 'Scikit-learn', 'SQL', 'Power BI'],
-    githubLink: 'http://bit.ly/shinu-github', // General GitHub link
-    icon: TrendingUp, // Or Wrench
-    impact: 'Reduced machine downtime by 20%.'
+    githubLink: 'http://bit.ly/shinu-github',
+    icon: Wrench,
+    impact: 'Reduced operational downtime by 20%, enhancing productivity.'
   },
   {
-    id: 'project-chatbots',
-    title: 'Medical Chatbots and Multi PDF Document Readers',
-    description: 'Built AI-driven chatbots using LangChain and LLMs, improving data retrieval efficiency by 30%.',
+    id: 'project-code-analysis',
+    title: 'AI-Powered Code Analysis',
+    description: 'Developed a code analysis tool using LangChain, LLMs, and ChromaDB to provide intelligent code insights and recommendations. Integrated vector databases for efficient data retrieval and analysis.',
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'AI chatbot document',
-    technologies: ['Python', 'LangChain', 'LLMs', 'Pinecone', 'ChromaDB'],
-    githubLink: 'http://bit.ly/shinu-github', // General GitHub link
-    icon: BotMessageSquare,
-    impact: 'Improved data retrieval efficiency by 30%.'
+    imageHint: 'AI code analysis',
+    technologies: ['Python', 'LangChain', 'ChromaDB', 'LLMs'],
+    githubLink: 'http://bit.ly/shinu-github',
+    icon: Code,
+    impact: 'Enhanced code review efficiency by 25% for development teams.'
   },
+  {
+    id: 'project-medical-chatbots',
+    title: 'Medical Chatbots and Chat With Multi PDF Document Readers',
+    description: 'Built AI-driven chatbots and document readers using LangChain and LLMs, improving data retrieval efficiency by 30%. Implemented vector databases for scalable querying.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'medical chatbot document',
+    technologies: ['Python', 'LangChain', 'LLMs', 'Pinecone', 'ChromaDB'],
+    githubLink: 'http://bit.ly/shinu-github',
+    icon: MessageSquareText, // Changed from BotMessageSquare to avoid repetition
+    impact: 'Streamlined healthcare data access and insights extraction.'
+  }
 ];
 
 export const educationData: TimelineEvent[] = [
@@ -196,7 +215,7 @@ export const educationData: TimelineEvent[] = [
     date: 'Feb 2023 – Feb 2024',
     title: 'Data Science Trainee',
     institution: '360DigiTMG, Bengaluru, Karnataka',
-    description: 'Comprehensive training in Data Science methodologies and tools.', // Added a small description
+    description: 'Comprehensive training in Data Science methodologies and tools.',
     skills: ['Python', 'SQL', 'Power BI', 'Machine Learning', 'Deep Learning'],
     icon: GraduationCap,
   },
@@ -206,7 +225,7 @@ export const educationData: TimelineEvent[] = [
     date: '2022 – 2023',
     title: 'Professional Training Program',
     institution: 'Jitendra Mishra Academy (JMA), India',
-    description: 'Focused professional development program.', // Added a small description
+    description: 'Focused professional development program.',
     icon: GraduationCap,
   },
   {
@@ -215,7 +234,7 @@ export const educationData: TimelineEvent[] = [
     date: '2018 – 2021',
     title: 'Bachelor of Computer Applications (BCA)',
     institution: 'Karnataka College, Bidar, Karnataka',
-    description: 'Foundation in computer science principles and applications.', // Added a small description
+    description: 'Foundation in computer science principles and applications.',
     cgpa: '7.64',
     icon: GraduationCap,
   },
@@ -239,5 +258,3 @@ export const certificationsData: Certification[] = [
     icon: Award,
   },
 ];
-
-    
