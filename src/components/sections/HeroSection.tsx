@@ -6,6 +6,8 @@ import { professionalName, professionalSummaryHero, socialLinks } from '@/config
 import Image from 'next/image';
 
 export default function HeroSection() {
+  const resumeUrl = "https://drive.google.com/file/d/17Tb5gf3lv_Kg5nBnpMMvpNfUxwC6MOxo/view?usp=drive_link";
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-background to-slate-900 py-20 overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -40,7 +42,7 @@ export default function HeroSection() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="shadow-lg hover:shadow-accent/50 transition-shadow border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-              <a href="/Shinu_Rathod_Resume_MNC1.pdf" download="Shinu_Rathod_Resume_MNC1.pdf"> 
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer"> 
                 <Download className="mr-2 h-5 w-5" /> Download Resume
               </a>
             </Button>
@@ -62,5 +64,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
-    
