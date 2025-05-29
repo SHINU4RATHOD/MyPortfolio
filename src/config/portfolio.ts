@@ -158,7 +158,7 @@ export const projectsData: Project[] = [
     title: 'AI-driven Autism Spectrum Detection (ASD)',
     description: 'Developed a machine learning system to predict Autism Spectrum Disorder using video and webcam input, leveraging MediaPipe for pose estimation and TensorFlow Lite for binary classification. Integrated a React frontend, Flask backend, and Gemini-powered chatbot for scalable user interaction.',
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'AI healthcare autism',
+    imageHint: 'AI healthcare',
     technologies: ['Python', 'TensorFlow Lite', 'MediaPipe', 'NLP', 'React', 'Flask', 'Gemini API'],
     githubLink: 'https://github.com/SHINU4RATHOD/ASD-Autistic-Spectrum-Disorders--Prediction-System',
     icon: BrainCircuit,
@@ -169,10 +169,10 @@ export const projectsData: Project[] = [
     title: 'Behavior Detection for AI Tutor',
     description: 'Built a behavior detection system for an AI Tutor platform using classification models to analyze user interactions. Deployed the model to improve personalized learning experiences, supported by data visualizations.',
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'AI tutor behavior',
+    imageHint: 'AI education',
     technologies: ['Python', 'TensorFlow', 'Pandas', 'Power BI'],
     githubLink: 'https://www.kaggle.com/code/shinnurathod/02-behavior-detection-for-aitutor-160',
-    icon: BotMessageSquare, 
+    icon: BotMessageSquare,
     impact: 'Increased user engagement by 10% through tailored recommendations.'
   },
   {
@@ -180,7 +180,7 @@ export const projectsData: Project[] = [
     title: 'Optimization of Machine Downtime',
     description: 'Designed a predictive maintenance model to minimize machine downtime using classification algorithms. Implemented feature engineering to identify critical failure patterns, visualized with Power BI.',
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'industrial AI maintenance',
+    imageHint: 'industrial AI',
     technologies: ['Python', 'Scikit-learn', 'SQL', 'Power BI'],
     githubLink: 'https://github.com/SHINU4RATHOD/1.-OPTIMIZATION-OF-MACHINE-DOWNTIME',
     icon: Wrench,
@@ -191,7 +191,7 @@ export const projectsData: Project[] = [
     title: 'AI-Powered Code Analysis',
     description: 'Developed a code analysis tool using LangChain, LLMs, and ChromaDB to provide intelligent code insights and recommendations. Integrated vector databases for efficient data retrieval and analysis.',
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'AI code analysis',
+    imageHint: 'AI coding',
     technologies: ['Python', 'LangChain', 'ChromaDB', 'LLMs'],
     githubLink: 'https://github.com/SHINU4RATHOD/AI-Powered-CodeAnalysis-LangChain-LLM-ChromaDB',
     icon: Code,
@@ -202,7 +202,7 @@ export const projectsData: Project[] = [
     title: 'Medical Chatbots and Chat With Multi PDF Document Readers',
     description: 'Built AI-driven chatbots and document readers using LangChain and LLMs, improving data retrieval efficiency by 30%. Implemented vector databases for scalable querying.',
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'medical chatbot document',
+    imageHint: 'medical chatbot',
     technologies: ['Python', 'LangChain', 'LLMs', 'Pinecone', 'ChromaDB'],
     githubLink: 'https://github.com/SHINU4RATHOD/Medical-Chatbot-LLM-Pinecone-LangChain',
     icon: MessageSquareText,
@@ -260,4 +260,3 @@ export const certificationsData: Certification[] = [
     icon: Award,
   },
 ];
-

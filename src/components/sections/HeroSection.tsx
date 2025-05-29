@@ -12,21 +12,19 @@ export default function HeroSection() {
     <section id="hero" className="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-background to-slate-900 py-20 overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         {/* Subtle background pattern or animated particles could go here for a futuristic tech aesthetic */}
-        {/* Example: <Image src="/path/to/your/tech-pattern.svg" layout="fill" objectFit="cover" alt="Background pattern" /> */}
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto">
           <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden shadow-2xl border-4 border-primary">
-            <Image 
-              src="https://placehold.co/200x200.png" 
+            <Image
+              src="/images/shinu-rathod-profile.png"
               alt={`${professionalName} headshot`}
-              layout="fill" 
+              layout="fill"
               objectFit="cover"
               priority // For LCP
-              data-ai-hint="professional headshot data scientist" 
             />
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-primary">
             {professionalName}
           </h1>
           <p className="text-xl sm:text-2xl text-accent font-medium mb-8">
@@ -42,7 +40,7 @@ export default function HeroSection() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="shadow-lg hover:shadow-accent/50 transition-shadow border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer"> 
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
                 <Download className="mr-2 h-5 w-5" /> Download Resume
               </a>
             </Button>
