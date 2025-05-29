@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Briefcase, GraduationCap, Linkedin, Github, Mail, Code, BarChartBig, Database, Cpu, Layers, Brain, Pipette, LinkIcon, MessageCircle, MessageSquareText, Server, Box, Palette, LineChart, AreaChart, Award, BotMessageSquare, SmilePlus, Wrench, TrendingUp, FileText, BrainCircuit, SearchCode, ClipboardCheck } from 'lucide-react';
+import { Briefcase, GraduationCap, Linkedin, Github, Mail, Code, BarChartBig, Database, Cpu, Layers, Brain, Pipette, LinkIcon, MessageCircle, MessageSquareText, Server, Box, Palette, LineChart, AreaChart, Award, BotMessageSquare, SmilePlus, Wrench, TrendingUp, FileText, BrainCircuit, SearchCode, ClipboardCheck, Phone } from 'lucide-react';
 
 // Types
 export interface NavLink {
@@ -56,6 +56,7 @@ export interface SocialLink {
   url: string;
   icon: LucideIcon;
   ariaLabel: string;
+  displayText?: string; // Optional: for text that differs from 'name', like the email address itself
 }
 
 // Data
@@ -77,7 +78,8 @@ export const navLinks: NavLink[] = [
 export const socialLinks: SocialLink[] = [
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/shinurathod-data-scientist', icon: Linkedin, ariaLabel: 'View LinkedIn profile' },
   { name: 'GitHub', url: 'https://github.com/SHINU4RATHOD', icon: Github, ariaLabel: 'View GitHub profile' },
-  { name: 'Email', url: 'mailto:shinukrathod0143@gmail.com', icon: Mail, ariaLabel: 'Send an email' },
+  { name: 'Email', url: 'mailto:shinukrathod0143@gmail.com', icon: Mail, ariaLabel: 'Send an email', displayText: 'shinukrathod0143@gmail.com' },
+  { name: 'Phone', url: 'tel:+916364163900', icon: Phone, ariaLabel: 'Call Shinu Rathod', displayText: '+91 63641 63900' },
 ];
 
 export const skillsData: SkillCategory[] = [

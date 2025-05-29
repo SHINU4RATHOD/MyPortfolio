@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import Link from 'next/link';
-import { socialLinks, professionalName } from '@/config/portfolio';
+import { socialLinks } from '@/config/portfolio';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -12,7 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { submitContactForm, type ContactFormState } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
-import { Send, Loader2, Mail, Linkedin, Github } from "lucide-react"; // Added Mail, Linkedin, Github
+import { Send, Loader2 } from "lucide-react"; 
 import { cn } from "@/lib/utils";
 
 const initialState: ContactFormState = {
@@ -144,11 +144,12 @@ export default function ContactSection() {
               <CardContent className="space-y-4">
                 {socialLinks.map((link) => {
                   const IconComponent = link.icon;
+                  const linkTarget = link.url.startsWith('mailto:') || link.url.startsWith('tel:') ? '_self' : '_blank';
                   return (
-                    <Link key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 group">
+                    <Link key={link.name} href={link.url} target={linkTarget} rel={linkTarget === '_blank' ? "noopener noreferrer" : undefined} className="flex items-center space-x-3 group">
                       <IconComponent className="h-6 w-6 text-primary group-hover:text-accent transition-colors" />
                       <span className="text-muted-foreground group-hover:text-foreground transition-colors">
-                        {link.name === 'Email' ? 'shinukrathod0143@gmail.com' : link.name}
+                        {link.displayText || link.name}
                       </span>
                     </Link>
                   );
