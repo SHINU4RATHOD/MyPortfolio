@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { cn } from "@/lib/utils";
 
 export default function AboutMeSection() {
-  const bio = "I’m a passionate Data Scientist with hands-on experience in Machine Learning, Deep Learning, NLP, and LLMs, delivering impactful solutions like autism detection (91.8% accuracy) and predictive maintenance (20% downtime reduction). I’m seeking to contribute my Python, TensorFlow, and LangChain expertise to a top-tier MNC.";
+  const bio = "Passionate Data Scientist with hands-on experience in building and deploying AI-driven solutions, specializing in Machine Learning, Deep Learning, NLP, and Generative AI. Proficient in crafting scalable, production-grade models to solve complex, real-world problems. Developed impactful solutions like autism detection (91.8% accuracy) and intelligent Medical Chatbot, building a Source Code Analyzer, and creating a Multi-Document Reader using state-of-the-art AI technologies. Dedicated to continuous learning, innovation, and delivering impactful, data-driven insights.";
   
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -50,12 +50,10 @@ export default function AboutMeSection() {
             {bio}
           </p>
           <div className="mt-8 text-sm text-foreground/80">
-            <p>Keywords: Data Scientist, AI Engineer, Machine Learning, Deep Learning, NLP, LLMs, Python, TensorFlow, Keras, PyTorch, Scikit-learn, LangChain, Flask, Docker, Pinecone, ChromaDB, Power BI, SQL, R, Predictive Maintenance, Autism Detection.</p>
+            <p>Keywords: Data Scientist, AI Engineer, Machine Learning, Deep Learning, NLP, Generative AI, Python, TensorFlow, LangChain, LLMs, Flask, Docker, Pinecone, ChromaDB, Power BI, SQL, R, Predictive Maintenance, Autism Detection, Medical Chatbot, Code Analysis, Multi-Document Reader.</p>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
-    
