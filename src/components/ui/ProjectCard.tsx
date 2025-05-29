@@ -24,7 +24,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             fill
             className="object-cover" // Modern way to handle object-fit
             data-ai-hint={project.imageHint || "project technology"}
-            priority={project.id === projectsData[0]?.id} // Prioritize first project image if applicable
+            priority={project.id === 'project-asd'} // Prioritize the first project image
           />
         </div>
       )}
@@ -70,7 +70,3 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     </Card>
   );
 }
-
-// Minimal data for priority prop logic, actual data is in config.
-// This is just to avoid an undefined error if projectsData is not directly imported here.
-const projectsData = [{id: 'project-asd'}];
