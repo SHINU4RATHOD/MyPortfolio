@@ -160,7 +160,7 @@ export const projectsData: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'AI healthcare autism',
     technologies: ['Python', 'TensorFlow Lite', 'MediaPipe', 'NLP', 'React', 'Flask', 'Gemini API'],
-    githubLink: 'https://github.com/SHINU4RATHOD',
+    githubLink: 'https://github.com/SHINU4RATHOD/ASD-Autistic-Spectrum-Disorders--Prediction-System',
     icon: BrainCircuit,
     impact: 'Achieved 91.8% model accuracy, supporting early ASD diagnosis for clinicians.'
   },
@@ -171,7 +171,7 @@ export const projectsData: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'AI tutor behavior',
     technologies: ['Python', 'TensorFlow', 'Pandas', 'Power BI'],
-    githubLink: 'https://github.com/SHINU4RATHOD',
+    githubLink: 'https://www.kaggle.com/code/shinnurathod/02-behavior-detection-for-aitutor-160',
     icon: BotMessageSquare, 
     impact: 'Increased user engagement by 10% through tailored recommendations.'
   },
@@ -182,7 +182,7 @@ export const projectsData: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'industrial AI maintenance',
     technologies: ['Python', 'Scikit-learn', 'SQL', 'Power BI'],
-    githubLink: 'https://github.com/SHINU4RATHOD',
+    githubLink: 'https://github.com/SHINU4RATHOD/1.-OPTIMIZATION-OF-MACHINE-DOWNTIME',
     icon: Wrench,
     impact: 'Reduced operational downtime by 20%, enhancing productivity.'
   },
@@ -193,7 +193,7 @@ export const projectsData: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'AI code analysis',
     technologies: ['Python', 'LangChain', 'ChromaDB', 'LLMs'],
-    githubLink: 'https://github.com/SHINU4RATHOD',
+    githubLink: 'https://github.com/SHINU4RATHOD/AI-Powered-CodeAnalysis-LangChain-LLM-ChromaDB',
     icon: Code,
     impact: 'Enhanced code review efficiency by 25% for development teams.'
   },
@@ -204,7 +204,7 @@ export const projectsData: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'medical chatbot document',
     technologies: ['Python', 'LangChain', 'LLMs', 'Pinecone', 'ChromaDB'],
-    githubLink: 'https://github.com/SHINU4RATHOD',
+    githubLink: 'https://github.com/SHINU4RATHOD/Medical-Chatbot-LLM-Pinecone-LangChain',
     icon: MessageSquareText,
     impact: 'Streamlined healthcare data access and insights extraction.'
   }
@@ -260,3 +260,4 @@ export const certificationsData: Certification[] = [
     icon: Award,
   },
 ];
+
