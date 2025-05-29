@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -21,12 +22,15 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   
-  // Close menu when a link is clicked (for mobile)
   const handleLinkClick = () => {
     if (isMenuOpen) {
       setIsMenuOpen(false);
     }
   };
+
+  const nameParts = professionalName.split(' ');
+  const firstName = nameParts[0];
+  const lastNameInitial = nameParts.length > 1 ? nameParts[1][0] : '';
 
   return (
     <header className={cn(
@@ -36,14 +40,15 @@ export default function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <Link href="#hero" className="text-2xl font-bold text-primary hover:text-accent transition-colors" onClick={handleLinkClick}>
-            {professionalName.split(' ')[0]}<span className="text-accent">{professionalName.split(' ').length > 1 ? professionalName.split(' ')[1][0] : ''}.</span>
+            {firstName}<span className="text-accent">{lastNameInitial}.</span>
           </Link>
-          <nav className="hidden md:flex space-x-6">
+          <nav className="hidden md:flex space-x-4 lg:space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                onClick={handleLinkClick} // Also close menu for desktop if it were open (though not typical)
               >
                 {link.label}
               </Link>
@@ -76,3 +81,5 @@ export default function Header() {
     </header>
   );
 }
+
+    

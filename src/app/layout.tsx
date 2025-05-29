@@ -1,3 +1,4 @@
+
 import type {Metadata} from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -14,8 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'MyAIPortfolio | AI & Data Science',
-  description: 'A personal portfolio showcasing AI and Data Science projects and skills.',
+  title: 'Shinu Rathod - Data Scientist & AI Engineer Portfolio',
+  description: 'Portfolio of Shinu Rathod, a Data Scientist and AI Engineer specializing in Machine Learning, Deep Learning, NLP, Python, TensorFlow, LangChain, and LLMs, seeking opportunities at top MNCs.',
+  keywords: 'Data Scientist, AI Engineer, Machine Learning, Deep Learning, Python, TensorFlow, LangChain, LLMs, Flask, Power BI, NLP, Shinu Rathod, Portfolio',
 };
 
 export default function RootLayout({
@@ -25,10 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark"> {/* Ensuring dark theme is applied, CSS vars handle it */}
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`}>
         {children}
         <Toaster />
       </body>
     </html>
   );
 }
+
+    

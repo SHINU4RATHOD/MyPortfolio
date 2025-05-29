@@ -1,0 +1,61 @@
+
+"use client";
+
+import { professionalName } from "@/config/portfolio";
+import { useEffect, useRef, useState } from 'react';
+import { cn } from "@/lib/utils";
+
+export default function AboutMeSection() {
+  const bio = "I’m a passionate Data Scientist with hands-on experience in Machine Learning, Deep Learning, NLP, and LLMs, delivering impactful solutions like autism detection (91.8% accuracy) and predictive maintenance (20% downtime reduction). I’m seeking to contribute my Python, TensorFlow, and LangChain expertise to a top-tier MNC.";
+  
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        rootMargin: "0px",
+        threshold: 0.3, // Trigger when 30% of the element is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <section id="about" className="py-16 md:py-24 bg-slate-800" ref={sectionRef}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={cn(
+          "max-w-3xl mx-auto text-center transition-all duration-1000 ease-out",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        )}>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+            About <span className="text-primary">{professionalName.split(' ')[0]}</span>
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            {bio}
+          </p>
+          <div className="mt-8 text-sm text-foreground/80">
+            <p>Keywords: Data Scientist, AI Engineer, Machine Learning, Deep Learning, NLP, LLMs, Python, TensorFlow, Keras, PyTorch, Scikit-learn, LangChain, Flask, Docker, Pinecone, ChromaDB, Power BI, SQL, R, Predictive Maintenance, Autism Detection.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+    

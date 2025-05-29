@@ -1,17 +1,19 @@
+
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import Link from 'next/link';
-import { socialLinks } from '@/config/portfolio';
+import { socialLinks, professionalName } from '@/config/portfolio';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { submitContactForm, type ContactFormState } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
-import { Send, Loader2 } from "lucide-react";
+import { Send, Loader2, Mail, Linkedin, Github } from "lucide-react"; // Added Mail, Linkedin, Github
+import { cn } from "@/lib/utils";
 
 const initialState: ContactFormState = {
   message: "",
@@ -21,9 +23,18 @@ const initialState: ContactFormState = {
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} className="w-full">
-      {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
-      Send Message
+    <Button type="submit" className="w-full" disabled={pending}>
+      {pending ? (
+        <>
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          Sending...
+        </>
+      ) : (
+        <>
+          <Send className="mr-2 h-4 w-4" />
+          Send Message
+        </>
+      )}
     </Button>
   );
 }
@@ -31,6 +42,10 @@ function SubmitButton() {
 export default function ContactSection() {
   const [state, formAction] = useFormState(submitContactForm, initialState);
   const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
+  
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (state.status === "success") {
@@ -38,69 +53,111 @@ export default function ContactSection() {
         title: "Message Sent!",
         description: state.message,
       });
-      // Optionally reset form fields here if not using a library that handles it
-      // (e.g., by getting form ref and calling reset())
+      formRef.current?.reset();
     } else if (state.status === "error") {
       toast({
         title: "Error",
-        description: state.message,
+        description: state.message || "An unexpected error occurred.",
         variant: "destructive",
       });
     }
   }, [state, toast]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 } 
+    );
+
+    const currentSectionRef = sectionRef.current;
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
+    }
+
+    return () => {
+      if (currentSectionRef) {
+        observer.unobserve(currentSectionRef);
+      }
+    };
+  }, []);
+
   return (
-    <section id="contact" className="bg-slate-800">
+    <section id="contact" className="py-16 md:py-24 bg-background" ref={sectionRef}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">Get in Touch</h2>
-        <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-          Have a project in mind, a question, or just want to connect? Feel free to reach out.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <Card className="shadow-lg">
+        <div className={cn(
+          "text-center mb-12 transition-all duration-1000 ease-out",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        )}>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            Get in <span className="text-primary">Touch</span>
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+            Have a project in mind, a question, or just want to connect? Feel free to reach out. I'm always open to discussing new opportunities.
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          <Card className={cn(
+            "contact-form-card w-full transition-all duration-1000 ease-out delay-200",
+            isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+          )}>
             <CardHeader>
-              <CardTitle>Contact Form</CardTitle>
+              <CardTitle className="text-2xl">Contact Form</CardTitle>
               <CardDescription>Send me a message directly through this form.</CardDescription>
             </CardHeader>
             <CardContent>
-              <form action={formAction} className="space-y-6">
-                <div>
+              <form ref={formRef} action={formAction} className="space-y-6">
+                <div className="space-y-2">
                   <Label htmlFor="name">Full Name</Label>
-                  <Input type="text" id="name" name="name" placeholder="Your Name" required className="mt-1 bg-slate-700/50 border-slate-600"/>
-                  {state.errors?.name && <p className="text-sm text-destructive mt-1">{state.errors.name.join(", ")}</p>}
+                  <Input id="name" name="name" placeholder="Your Name" required />
+                  {state.errors?.name && <p className="text-sm text-destructive">{state.errors.name.join(", ")}</p>}
                 </div>
-                <div>
+                <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
-                  <Input type="email" id="email" name="email" placeholder="your.email@example.com" required className="mt-1 bg-slate-700/50 border-slate-600"/>
-                  {state.errors?.email && <p className="text-sm text-destructive mt-1">{state.errors.email.join(", ")}</p>}
+                  <Input id="email" name="email" type="email" placeholder="your.email@example.com" required />
+                  {state.errors?.email && <p className="text-sm text-destructive">{state.errors.email.join(", ")}</p>}
                 </div>
-                <div>
+                <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" name="message" placeholder="Your message..." rows={5} required className="mt-1 bg-slate-700/50 border-slate-600"/>
-                  {state.errors?.message && <p className="text-sm text-destructive mt-1">{state.errors.message.join(", ")}</p>}
+                  <Textarea id="message" name="message" placeholder="Your message..." rows={5} required />
+                  {state.errors?.message && <p className="text-sm text-destructive">{state.errors.message.join(", ")}</p>}
                 </div>
                 <SubmitButton />
               </form>
             </CardContent>
           </Card>
-          <div className="space-y-8">
-            <Card className="shadow-lg">
+
+          <div className={cn(
+            "space-y-8 transition-all duration-1000 ease-out delay-300",
+            isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+          )}>
+            <Card>
               <CardHeader>
-                <CardTitle>Contact Details</CardTitle>
+                <CardTitle className="text-2xl">Contact Details</CardTitle>
                 <CardDescription>Other ways to connect with me.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                {socialLinks.map((link) => (
-                  <div key={link.name} className="flex items-center space-x-3">
-                    <link.icon className="h-6 w-6 text-primary" />
-                    <Link href={link.url} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-accent transition-colors">
-                      {link.name}
+                {socialLinks.map((link) => {
+                  const IconComponent = link.icon;
+                  return (
+                    <Link key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 group">
+                      <IconComponent className="h-6 w-6 text-primary group-hover:text-accent transition-colors" />
+                      <span className="text-muted-foreground group-hover:text-foreground transition-colors">
+                        {link.name === 'Email' ? 'shinukrathod0143@gmail.com' : link.name}
+                      </span>
                     </Link>
-                  </div>
-                ))}
+                  );
+                })}
               </CardContent>
             </Card>
-            {/* You could add a map or other info here */}
+             <div className="text-center md:text-left">
+                <p className="text-muted-foreground">I'm looking forward to hearing from you!</p>
+             </div>
           </div>
         </div>
       </div>
