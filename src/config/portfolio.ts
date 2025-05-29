@@ -75,8 +75,8 @@ export const navLinks: NavLink[] = [
 ];
 
 export const socialLinks: SocialLink[] = [
-  { name: 'LinkedIn', url: 'http://bit.ly/shinu-linkedin', icon: Linkedin, ariaLabel: 'View LinkedIn profile' },
-  { name: 'GitHub', url: 'http://bit.ly/shinu-github', icon: Github, ariaLabel: 'View GitHub profile' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/shinurathod-data-scientist', icon: Linkedin, ariaLabel: 'View LinkedIn profile' },
+  { name: 'GitHub', url: 'https://github.com/SHINU4RATHOD', icon: Github, ariaLabel: 'View GitHub profile' },
   { name: 'Email', url: 'mailto:shinukrathod0143@gmail.com', icon: Mail, ariaLabel: 'Send an email' },
 ];
 
@@ -158,7 +158,7 @@ export const projectsData: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'AI healthcare autism',
     technologies: ['Python', 'TensorFlow Lite', 'MediaPipe', 'NLP', 'React', 'Flask', 'Gemini API'],
-    githubLink: 'http://bit.ly/shinu-github',
+    githubLink: 'https://github.com/SHINU4RATHOD',
     icon: BrainCircuit,
     impact: 'Achieved 91.8% model accuracy, supporting early ASD diagnosis for clinicians.'
   },
@@ -169,7 +169,7 @@ export const projectsData: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'AI tutor behavior',
     technologies: ['Python', 'TensorFlow', 'Pandas', 'Power BI'],
-    githubLink: 'http://bit.ly/shinu-github',
+    githubLink: 'https://github.com/SHINU4RATHOD',
     icon: BotMessageSquare, 
     impact: 'Increased user engagement by 10% through tailored recommendations.'
   },
@@ -180,7 +180,7 @@ export const projectsData: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'industrial AI maintenance',
     technologies: ['Python', 'Scikit-learn', 'SQL', 'Power BI'],
-    githubLink: 'http://bit.ly/shinu-github',
+    githubLink: 'https://github.com/SHINU4RATHOD',
     icon: Wrench,
     impact: 'Reduced operational downtime by 20%, enhancing productivity.'
   },
@@ -191,7 +191,7 @@ export const projectsData: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'AI code analysis',
     technologies: ['Python', 'LangChain', 'ChromaDB', 'LLMs'],
-    githubLink: 'http://bit.ly/shinu-github',
+    githubLink: 'https://github.com/SHINU4RATHOD',
     icon: Code,
     impact: 'Enhanced code review efficiency by 25% for development teams.'
   },
@@ -202,8 +202,8 @@ export const projectsData: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'medical chatbot document',
     technologies: ['Python', 'LangChain', 'LLMs', 'Pinecone', 'ChromaDB'],
-    githubLink: 'http://bit.ly/shinu-github',
-    icon: MessageSquareText, // Changed from BotMessageSquare to avoid repetition
+    githubLink: 'https://github.com/SHINU4RATHOD',
+    icon: MessageSquareText,
     impact: 'Streamlined healthcare data access and insights extraction.'
   }
 ];
@@ -246,7 +246,7 @@ export const certificationsData: Certification[] = [
     title: 'Data Science & Analytics Internship',
     issuer: 'Zidio Development',
     date: 'Dec 2024',
-    verificationLink: 'http://bit.ly/zidio-cert-2024',
+    verificationLink: 'https://www.linkedin.com/posts/shinurathod-data-scientist_internship-completion-cirtificate-activity-7269614242863951874-Jiyw',
     icon: Award,
   },
   {
@@ -254,7 +254,7 @@ export const certificationsData: Certification[] = [
     title: 'Autism Detection Internship',
     issuer: 'AISPRY',
     date: 'May 2025',
-    verificationLink: 'http://bit.ly/aispry-cert-2025',
+    verificationLink: 'https://www.linkedin.com/posts/shinurathod-data-scientist_autism-detection-with-aispry-activity-7331568503365267457-kjGu',
     icon: Award,
   },
 ];
