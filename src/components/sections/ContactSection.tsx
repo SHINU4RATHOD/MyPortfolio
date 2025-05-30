@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useEffect, useRef, useActionState } from "react"; // Ensure React is imported
+import React, { useEffect, useRef, useActionState, useState } from "react"; // Added useState here
 import Link from 'next/link';
 import { socialLinks } from '@/config/portfolio';
 import { Button } from '@/components/ui/button';
@@ -13,7 +13,7 @@ import { submitContactForm, type ContactFormState } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
 import { Send, Loader2 } from "lucide-react"; 
 import { cn } from "@/lib/utils";
-import { useFormStatus } from "react-dom"; // Correct import for useFormStatus
+import { useFormStatus } from "react-dom";
 
 const initialState: ContactFormState = {
   message: "",
@@ -21,7 +21,7 @@ const initialState: ContactFormState = {
 };
 
 function SubmitButton() {
-  const { pending } = useFormStatus(); // Use the hook directly
+  const { pending } = useFormStatus();
 
   return (
     <Button type="submit" className="w-full" disabled={pending}>
@@ -47,7 +47,7 @@ export default function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null);
   
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false); // This is line 50
 
   useEffect(() => {
     if (state.status === "success") {
@@ -167,5 +167,3 @@ export default function ContactSection() {
     </section>
   );
 }
-
-    
