@@ -1,8 +1,7 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import React, { useEffect, useRef, useActionState } from "react"; // Ensure React is imported
 import Link from 'next/link';
 import { socialLinks } from '@/config/portfolio';
 import { Button } from '@/components/ui/button';
@@ -14,6 +13,7 @@ import { submitContactForm, type ContactFormState } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
 import { Send, Loader2 } from "lucide-react"; 
 import { cn } from "@/lib/utils";
+import { useFormStatus } from "react-dom"; // Correct import for useFormStatus
 
 const initialState: ContactFormState = {
   message: "",
@@ -21,7 +21,8 @@ const initialState: ContactFormState = {
 };
 
 function SubmitButton() {
-  const { pending } = useFormStatus();
+  const { pending } = useFormStatus(); // Use the hook directly
+
   return (
     <Button type="submit" className="w-full" disabled={pending}>
       {pending ? (
@@ -39,8 +40,9 @@ function SubmitButton() {
   );
 }
 
+
 export default function ContactSection() {
-  const [state, formAction] = useFormState(submitContactForm, initialState);
+  const [state, formAction] = useActionState(submitContactForm, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
   
@@ -165,3 +167,5 @@ export default function ContactSection() {
     </section>
   );
 }
+
+    
