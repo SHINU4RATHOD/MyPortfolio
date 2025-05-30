@@ -19,13 +19,13 @@ export default function HeroSection() {
             <Image
               src="/images/shinu-rathod-profile.png"
               alt={`${professionalName} headshot`}
-              layout="fill"
+              fill
               objectFit="cover"
               priority // For LCP
             />
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-primary">
-            {professionalName}
+            Hi I'm <span className="text-primary">{professionalName}</span>
           </h1>
           <p className="text-xl sm:text-2xl text-accent font-medium mb-8">
             Data Scientist & AI Engineer

@@ -12,17 +12,19 @@ export default function AboutMeSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const currentSectionRef = sectionRef.current; // Capture ref value
+    const currentSectionRef = sectionRef.current; 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target);
+          if (currentSectionRef) { // Check again before unobserving
+            observer.unobserve(currentSectionRef);
+          }
         }
       },
       {
         rootMargin: "0px",
-        threshold: 0.3, // Trigger when 30% of the element is visible
+        threshold: 0.3, 
       }
     );
 
@@ -31,11 +33,11 @@ export default function AboutMeSection() {
     }
 
     return () => {
-      if (currentSectionRef) { // Use captured value in cleanup
+      if (currentSectionRef) { 
         observer.unobserve(currentSectionRef);
       }
     };
-  }, []);
+  }, []); // No need to depend on sectionRef.current here
 
   return (
     <section id="about" className="py-16 md:py-24 bg-slate-800" ref={sectionRef}>
@@ -45,7 +47,7 @@ export default function AboutMeSection() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-            About <span className="text-primary">{professionalName.split(' ')[0]}</span>
+            About <span className="text-primary">Me</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
             {bio}
