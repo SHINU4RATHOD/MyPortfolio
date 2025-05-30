@@ -1,7 +1,7 @@
 
 # MyAIPortfolio - Shinu Rathod: Data Scientist & AI Engineer
 
-![MyAIPortfolio Hero Section Screenshot](https://placehold.co/1200x600.png?text=Portfolio+Screenshot+Placeholder)
+![MyAIPortfolio Hero Section Screenshot](livedemo.png)
 *Replace the placeholder above with an actual screenshot of the deployed portfolio's hero section.*
 
 This repository contains the source code for the personal portfolio website of **Shinu Rathod**, a passionate and results-oriented Data Scientist and AI Engineer. The portfolio is designed to showcase Shinu's skills, experience, and projects to potential employers at top MNCs, targeting roles such as Data Scientist, AI Engineer, and Machine Learning Engineer.
