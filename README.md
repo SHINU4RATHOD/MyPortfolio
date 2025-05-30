@@ -1,5 +1,5 @@
 
-# MyAIPortfolio - Shinu Rathod: Data Scientist & AI Engineer
+# MyAIPortfolio - : Data Scientist & AI Engineer
 
 ![MyAIPortfolio Hero Section Screenshot](livedemo.png)
 *Replace the placeholder above with an actual screenshot of the deployed portfolio's hero section.*
@@ -89,19 +89,6 @@ npm run build
 ```
 This will generate an optimized static build in the `.next` folder.
 
-## Deployment
-
-This portfolio is configured for deployment on **Firebase App Hosting**.
-The `apphosting.yaml` file in the root directory contains the necessary configuration.
-
-To deploy:
-1.  Ensure the [Firebase CLI](https://firebase.google.com/docs/cli) is installed and you are logged in (`firebase login`).
-2.  Make sure your Firebase project has billing enabled (required for App Hosting, even for the free tier).
-3.  Run the deployment command:
-    ```bash
-    firebase apphosting:backends:deploy --project YOUR_FIREBASE_PROJECT_ID
-    ```
-    Replace `YOUR_FIREBASE_PROJECT_ID` with your actual Firebase Project ID (e.g., `myaiportfolio`).
 
 ## Customization
 
@@ -159,5 +146,4 @@ Shinu Rathod
 *   **Phone:** +91 63641 63900
 
 ---
-
-*This README was generated with assistance from an AI coding partner in Firebase Studio.*
+ 
