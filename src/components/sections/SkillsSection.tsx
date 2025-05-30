@@ -1,14 +1,15 @@
 
 "use client";
 
+import React, { useEffect, useRef, useState } from 'react';
 import { skillsData, type SkillCategory, type Skill } from '@/config/portfolio';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { useEffect, useRef, useState } from 'react';
 import { cn } from "@/lib/utils";
 
 const SkillBadge = ({ skill }: { skill: Skill }) => {
+  const SkillIcon = skill.icon;
   return (
     <TooltipProvider delayDuration={100}>
       <Tooltip>
@@ -17,7 +18,7 @@ const SkillBadge = ({ skill }: { skill: Skill }) => {
             variant="secondary"
             className="px-4 py-2 text-sm sm:text-base transform transition-all duration-200 hover:scale-105 hover:bg-primary hover:text-primary-foreground cursor-default shadow-md hover:shadow-lg"
           >
-            <skill.icon className="mr-2 h-5 w-5" />
+            <SkillIcon className="mr-2 h-5 w-5" suppressHydrationWarning />
             {skill.name}
           </Badge>
         </TooltipTrigger>
@@ -44,12 +45,12 @@ export default function SkillsSection() {
       { threshold: 0.1 }
     );
 
-    const currentSectionRef = sectionRef.current; // Capture ref value
+    const currentSectionRef = sectionRef.current;
     if (currentSectionRef) {
       observer.observe(currentSectionRef);
     }
     return () => {
-      if (currentSectionRef) { // Use captured value in cleanup
+      if (currentSectionRef) {
         observer.unobserve(currentSectionRef);
       }
     };

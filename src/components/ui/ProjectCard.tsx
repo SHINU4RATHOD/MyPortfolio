@@ -17,20 +17,21 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Card className="flex flex-col h-full bg-card hover:shadow-primary/20 hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       {project.imageUrl && (
-        <div className="relative w-full h-48"> {/* Image container, direct child of Card */}
+        <div className="relative w-full h-48">
           <Image
             src={project.imageUrl}
             alt={project.title}
             fill
-            className="object-cover" // Modern way to handle object-fit
+            className="object-cover"
             data-ai-hint={project.imageHint || "project technology"}
-            priority={project.id === 'project-asd'} // Prioritize the first project image
+            priority={project.id === 'project-asd'}
+            suppressHydrationWarning // Added to help with extension-caused mismatches
           />
         </div>
       )}
       <CardHeader>
         <div className="flex items-center space-x-3">
-          {ProjectIcon && <ProjectIcon className="h-8 w-8 text-primary" />}
+          {ProjectIcon && <ProjectIcon className="h-8 w-8 text-primary" suppressHydrationWarning />}
           <CardTitle className="text-xl">{project.title}</CardTitle>
         </div>
         <CardDescription>{project.description}</CardDescription>
@@ -55,14 +56,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {project.githubLink && (
           <Button asChild variant="outline" className="w-full sm:w-auto border-accent text-accent hover:bg-accent hover:text-accent-foreground">
             <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
-              <Github className="mr-2 h-4 w-4" /> View on GitHub
+              <Github className="mr-2 h-4 w-4" suppressHydrationWarning /> View on GitHub
             </Link>
           </Button>
         )}
         {project.liveLink && (
           <Button asChild variant="default" className="w-full sm:w-auto">
             <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="mr-2 h-4 w-4" /> View Live
+              <ExternalLink className="mr-2 h-4 w-4" suppressHydrationWarning /> View Live
             </Link>
           </Button>
         )}

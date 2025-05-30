@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useEffect, useRef, useActionState, useState } from "react"; // Added useState here
+import React, { useEffect, useRef, useActionState, useState } from "react";
 import Link from 'next/link';
 import { socialLinks } from '@/config/portfolio';
 import { Button } from '@/components/ui/button';
@@ -27,12 +27,12 @@ function SubmitButton() {
     <Button type="submit" className="w-full" disabled={pending}>
       {pending ? (
         <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" suppressHydrationWarning />
           Sending...
         </>
       ) : (
         <>
-          <Send className="mr-2 h-4 w-4" />
+          <Send className="mr-2 h-4 w-4" suppressHydrationWarning />
           Send Message
         </>
       )}
@@ -47,7 +47,7 @@ export default function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null);
   
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false); // This is line 50
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (state.status === "success") {
@@ -149,7 +149,7 @@ export default function ContactSection() {
                   const linkTarget = link.url.startsWith('mailto:') || link.url.startsWith('tel:') ? '_self' : '_blank';
                   return (
                     <Link key={link.name} href={link.url} target={linkTarget} rel={linkTarget === '_blank' ? "noopener noreferrer" : undefined} className="flex items-center space-x-3 group">
-                      <IconComponent className="h-6 w-6 text-primary group-hover:text-accent transition-colors" />
+                      <IconComponent className="h-6 w-6 text-primary group-hover:text-accent transition-colors" suppressHydrationWarning />
                       <span className="text-muted-foreground group-hover:text-foreground transition-colors">
                         {link.displayText || link.name}
                       </span>

@@ -1,12 +1,12 @@
 
 "use client";
 
+import React, { useEffect, useRef, useState } from 'react';
 import { certificationsData } from '@/config/portfolio';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
 import { cn } from "@/lib/utils";
 
 export default function CertificationsSection() {
@@ -14,17 +14,19 @@ export default function CertificationsSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const currentSectionRef = sectionRef.current; // Capture ref value
+    const currentSectionRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target);
+          if (currentSectionRef) {
+            observer.unobserve(currentSectionRef);
+          }
         }
       },
       {
         rootMargin: "0px",
-        threshold: 0.1, // Trigger when 10% of the section is visible
+        threshold: 0.1, 
       }
     );
 
@@ -33,7 +35,7 @@ export default function CertificationsSection() {
     }
 
     return () => {
-      if (currentSectionRef) { // Use captured value in cleanup
+      if (currentSectionRef) {
         observer.unobserve(currentSectionRef);
       }
     };
@@ -67,7 +69,7 @@ export default function CertificationsSection() {
               >
                 <Card className="flex flex-col h-full bg-card hover:shadow-primary/20 hover:shadow-lg transition-shadow duration-300">
                   <CardHeader className="items-center text-center">
-                    <CertIcon className="h-12 w-12 text-primary mb-4" />
+                    <CertIcon className="h-12 w-12 text-primary mb-4" suppressHydrationWarning />
                     <CardTitle className="text-xl">{cert.title}</CardTitle>
                     <CardDescription>{cert.issuer}</CardDescription>
                   </CardHeader>
@@ -77,7 +79,7 @@ export default function CertificationsSection() {
                   <CardFooter className="justify-center pt-4">
                     <Button asChild variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground">
                       <Link href={cert.verificationLink} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" /> Verify Certification
+                        <ExternalLink className="mr-2 h-4 w-4" suppressHydrationWarning /> Verify Certification
                       </Link>
                     </Button>
                   </CardFooter>

@@ -1,10 +1,10 @@
 
 "use client";
 
+import React, { useEffect, useRef, useState } from 'react';
 import { educationData } from '@/config/portfolio';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { useEffect, useRef, useState } from 'react';
 import { cn } from "@/lib/utils";
 
 export default function EducationSection() {
@@ -12,17 +12,19 @@ export default function EducationSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const currentSectionRef = sectionRef.current; // Capture ref value
+    const currentSectionRef = sectionRef.current; 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target);
+          if (currentSectionRef) { 
+            observer.unobserve(currentSectionRef);
+          }
         }
       },
       {
         rootMargin: "0px",
-        threshold: 0.1, // Trigger when 10% of the section is visible
+        threshold: 0.1,
       }
     );
 
@@ -31,7 +33,7 @@ export default function EducationSection() {
     }
 
     return () => {
-      if (currentSectionRef) { // Use captured value in cleanup
+      if (currentSectionRef) { 
         observer.unobserve(currentSectionRef);
       }
     };
@@ -66,7 +68,7 @@ export default function EducationSection() {
                 <Card className="bg-card hover:shadow-primary/20 hover:shadow-lg transition-shadow duration-300">
                   <CardHeader>
                     <div className="flex items-start space-x-4">
-                      <Icon className="h-10 w-10 text-primary mt-1" />
+                      <Icon className="h-10 w-10 text-primary mt-1" suppressHydrationWarning />
                       <div>
                         <CardTitle className="text-xl">{edu.title}</CardTitle>
                         <CardDescription>{edu.institution}</CardDescription>

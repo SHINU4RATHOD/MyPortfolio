@@ -22,6 +22,7 @@ export default function HeroSection() {
               fill
               objectFit="cover"
               priority // For LCP
+              suppressHydrationWarning // Added to help with extension-caused mismatches
             />
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-primary">
@@ -41,14 +42,14 @@ export default function HeroSection() {
             </Button>
             <Button asChild variant="outline" size="lg" className="shadow-lg hover:shadow-accent/50 transition-shadow border-accent text-accent hover:bg-accent hover:text-accent-foreground">
               <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
-                <Download className="mr-2 h-5 w-5" /> Download Resume
+                <Download className="mr-2 h-5 w-5" suppressHydrationWarning /> Download Resume
               </a>
             </Button>
           </div>
           <div className="flex justify-center space-x-6">
             {socialLinks.map((link) => (
-              <Link key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.ariaLabel}>
-                <link.icon className="h-7 w-7 text-muted-foreground hover:text-primary transition-colors" />
+              <Link key={link.name} href={link.url} target={link.url.startsWith('mailto:') || link.url.startsWith('tel:') ? '_self' : '_blank'} rel={link.url.startsWith('mailto:') || link.url.startsWith('tel:') ? undefined : "noopener noreferrer"} aria-label={link.ariaLabel}>
+                <link.icon className="h-7 w-7 text-muted-foreground hover:text-primary transition-colors" suppressHydrationWarning />
               </Link>
             ))}
           </div>
@@ -56,7 +57,7 @@ export default function HeroSection() {
       </div>
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
         <Link href="#about" aria-label="Scroll to about section">
-          <ArrowDown className="h-8 w-8 text-primary" />
+          <ArrowDown className="h-8 w-8 text-primary" suppressHydrationWarning />
         </Link>
       </div>
     </section>

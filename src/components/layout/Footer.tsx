@@ -16,12 +16,12 @@ export default function Footer() {
         <div className="flex justify-center space-x-4 mt-4">
           {linkedinLink && (
             <Link href={linkedinLink.url} target="_blank" rel="noopener noreferrer" aria-label={linkedinLink.ariaLabel}>
-              <linkedinLink.icon className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+              <linkedinLink.icon className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" suppressHydrationWarning />
             </Link>
           )}
           {githubLink && (
             <Link href={githubLink.url} target="_blank" rel="noopener noreferrer" aria-label={githubLink.ariaLabel}>
-              <githubLink.icon className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+              <githubLink.icon className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" suppressHydrationWarning />
             </Link>
           )}
         </div>
@@ -32,5 +32,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-    
