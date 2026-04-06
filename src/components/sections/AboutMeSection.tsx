@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { cn } from "@/lib/utils";
 
 export default function AboutMeSection() {
-  const bio = "Passionate Data Scientist with hands-on experience in building and deploying AI-driven solutions, specializing in Machine Learning, Deep Learning, NLP, and Generative AI. Proficient in crafting scalable, production-grade models to solve complex, real-world problems. Developed impactful solutions like autism detection (91.8% accuracy) and intelligent Medical Chatbot, building a Source Code Analyzer, and creating a Multi-Document Reader using state-of-the-art AI technologies. Dedicated to continuous learning, innovation, and delivering impactful, data-driven insights.";
+  const bio = "AI Researcher at IIT Ropar and Data Scientist building production-grade AI systems. My current research focuses on on-device phishing URL detection using Transformer fine-tuning (MiniLM + LoRA) on 35M+ URLs, deployed as an Android app via ONNX INT8 quantization. Beyond cybersecurity AI, I build Generative AI applications — RAG pipelines, LLM-powered chatbots, and multi-document readers using LangChain, Pinecone, and ChromaDB. Actively upskilling in Agentic AI, exploring ReAct agents, tool-use, and multi-agent orchestration frameworks. Dedicated to continuous learning and delivering impactful, real-world AI solutions.";
   
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -53,7 +53,7 @@ export default function AboutMeSection() {
             {bio}
           </p>
           <div className="mt-8 text-sm text-foreground/80">
-            <p>Keywords: Data Scientist, AI Engineer, Machine Learning, Deep Learning, NLP, Generative AI, Python, TensorFlow, LangChain, LLMs, Flask, Docker, Pinecone, ChromaDB, Power BI, SQL, R, Predictive Maintenance, Autism Detection, Medical Chatbot, Code Analysis, Multi-Document Reader.</p>
+            <p>Keywords: AI Researcher, IIT Ropar, Data Scientist, Machine Learning, Deep Learning, Transformers, LoRA, ONNX, On-Device ML, NLP, Generative AI, LLMs, Prompt Engineering, RAG, LangChain, LlamaIndex, Agentic AI, AI Agents, ReAct, Pinecone, ChromaDB, Cybersecurity AI, Phishing Detection, Android ML, Python, PyTorch, TensorFlow, Power BI.</p>
           </div>
         </div>
       </div>

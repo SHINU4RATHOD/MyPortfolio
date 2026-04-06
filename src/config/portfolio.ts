@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Briefcase, GraduationCap, Linkedin, Github, Mail, Code, BarChartBig, Database, Cpu, Layers, Brain, Pipette, LinkIcon, MessageCircle, MessageSquareText, Server, Box, Palette, LineChart, AreaChart, Award, BotMessageSquare, SmilePlus, Wrench, TrendingUp, FileText, BrainCircuit, SearchCode, ClipboardCheck, Phone } from 'lucide-react';
+import { Briefcase, GraduationCap, Linkedin, Github, Mail, Code, BarChartBig, Database, Cpu, Layers, Brain, Pipette, LinkIcon, MessageCircle, MessageSquareText, Server, Box, Palette, LineChart, AreaChart, Award, BotMessageSquare, SmilePlus, Wrench, TrendingUp, FileText, BrainCircuit, SearchCode, ClipboardCheck, Phone, Shield, Smartphone, Sparkles, Bot, Workflow, Zap, Globe, BookOpen } from 'lucide-react';
 
 // Types
 export interface NavLink {
@@ -61,8 +61,9 @@ export interface SocialLink {
 
 // Data
 export const professionalName = "Shinu Rathod";
-export const professionalTitle = "Data Scientist & AI Engineer";
-export const professionalSummaryHero = "Building AI-Driven Solutions for Tomorrow. Specializing in Machine Learning, Deep Learning, NLP, and LLMs.";
+export const professionalTitle = "Data Scientist & AI Researcher";
+export const professionalSummaryHero = "AI Researcher at IIT Ropar building production-grade ML systems. Specializing in Transformers, On-Device ML, NLP, Generative AI, and Cybersecurity AI.";
+export const profileImageUrl = "https://avatars.githubusercontent.com/u/62996977";
 
 export const navLinks: NavLink[] = [
   { href: "#hero", label: "Home" },
@@ -88,28 +89,63 @@ export const skillsData: SkillCategory[] = [
     skills: [
       { name: "Python", icon: Code },
       { name: "SQL", icon: Database },
+      { name: "Kotlin", icon: Smartphone },
       { name: "R", icon: Code },
     ],
   },
   {
-    category: "Machine Learning & AI",
+    category: "Machine Learning & Deep Learning",
     skills: [
+      { name: "PyTorch", icon: Brain },
       { name: "TensorFlow", icon: BrainCircuit },
       { name: "Keras", icon: Layers },
-      { name: "PyTorch", icon: Brain },
       { name: "Scikit-learn", icon: Pipette },
-      { name: "LangChain", icon: LinkIcon },
-      { name: "LLMs", icon: MessageCircle },
-      { name: "NLP", icon: MessageSquareText },
+      { name: "Hugging Face", icon: Brain },
+      { name: "LoRA / QLoRA", icon: Zap },
+      { name: "ONNX Runtime", icon: Cpu },
     ],
   },
   {
-    category: "Data Technologies",
+    category: "Generative AI (GenAI)",
     skills: [
-      { name: "Flask", icon: Server },
-      { name: "Docker", icon: Box },
+      { name: "LLM Fine-Tuning", icon: Sparkles },
+      { name: "Prompt Engineering", icon: MessageCircle },
+      { name: "RAG", icon: SearchCode },
+      { name: "LangChain", icon: LinkIcon },
+      { name: "LlamaIndex", icon: BookOpen },
+      { name: "Vector Databases", icon: Database },
       { name: "Pinecone", icon: Database },
       { name: "ChromaDB", icon: Database },
+    ],
+  },
+  {
+    category: "Agentic AI (Upskilling)",
+    skills: [
+      { name: "AI Agents", icon: Bot },
+      { name: "ReAct Framework", icon: Workflow },
+      { name: "Tool Use & Function Calling", icon: Wrench },
+      { name: "Multi-Agent Systems", icon: BotMessageSquare },
+      { name: "Claude Agent SDK", icon: Sparkles },
+    ],
+  },
+  {
+    category: "AI Tools",
+    skills: [
+      { name: "Claude", icon: Sparkles },
+      { name: "ChatGPT", icon: MessageCircle },
+      { name: "Gemini", icon: Globe },
+      { name: "Perplexity", icon: SearchCode },
+      { name: "Claude Code", icon: Code },
+    ],
+  },
+  {
+    category: "MLOps & Deployment",
+    skills: [
+      { name: "Flask", icon: Server },
+      { name: "FastAPI", icon: Zap },
+      { name: "Docker", icon: Box },
+      { name: "Streamlit", icon: BarChartBig },
+      { name: "Android / ONNX", icon: Smartphone },
     ],
   },
   {
@@ -123,6 +159,16 @@ export const skillsData: SkillCategory[] = [
 ];
 
 export const experienceTimeline: TimelineEvent[] = [
+  {
+    id: 'work-0',
+    type: 'work',
+    date: '2025 – Present',
+    title: 'AI Researcher',
+    institution: 'IIT Ropar — Cybersecurity AI Division',
+    description: 'Leading research on production-grade phishing URL detection using MiniLM Transformers + LoRA fine-tuning on 35.3M URLs. Achieved 98.91% AUC-ROC. Deployed as PhishGuard — an on-device Android app with INT8 ONNX quantization (32.6 MB, ~100ms inference).',
+    icon: BrainCircuit,
+    skills: ['PyTorch', 'Transformers', 'LoRA', 'ONNX', 'Kotlin', 'Android', 'Cybersecurity AI'],
+  },
   {
     id: 'work-2',
     type: 'work',
@@ -153,6 +199,17 @@ export const experienceTimeline: TimelineEvent[] = [
 ];
 
 export const projectsData: Project[] = [
+  {
+    id: 'project-phishguard',
+    title: 'PhishGuard — On-Device Phishing URL Detection',
+    description: 'IIT Ropar research project: Production-grade phishing detection system using MiniLM-L12 Transformer + LoRA fine-tuning on 35.3M URLs. Deployed as a fully offline Android app via INT8 ONNX quantization (32.6 MB model, ~100ms inference on-device). No internet required, zero data exfiltration.',
+    imageUrl: '/images/projects/project-phishguard.png',
+    imageHint: 'cybersecurity AI mobile',
+    technologies: ['PyTorch', 'Transformers', 'LoRA', 'ONNX', 'Kotlin', 'Android', 'Jetpack Compose'],
+    githubLink: 'https://github.com/SHINU4RATHOD/PhishDetect',
+    icon: Shield,
+    impact: 'AUC-ROC 98.91% on 4.4M test URLs. 32.6 MB on-device model with <100ms inference — production deployed.',
+  },
   {
     id: 'project-asd',
     title: 'AI-driven Autism Spectrum Detection (ASD)',

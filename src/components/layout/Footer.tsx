@@ -3,7 +3,7 @@ import { professionalName, socialLinks } from "@/config/portfolio";
 import Link from "next/link";
 
 export default function Footer() {
-  const currentYear = 2025; // As requested in prompt
+  const currentYear = new Date().getFullYear();
   const githubLink = socialLinks.find(link => link.name === 'GitHub');
   const linkedinLink = socialLinks.find(link => link.name === 'LinkedIn');
 
