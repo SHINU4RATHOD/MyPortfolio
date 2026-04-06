@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { cn } from "@/lib/utils";
 
 export default function AboutMeSection() {
-  const bio = "AI Researcher at IIT Ropar and Data Scientist building production-grade AI systems. My current research focuses on on-device phishing URL detection using Transformer fine-tuning (MiniLM + LoRA) on 35M+ URLs, deployed as an Android app via ONNX INT8 quantization. Beyond cybersecurity AI, I build Generative AI applications — RAG pipelines, LLM-powered chatbots, and multi-document readers using LangChain, Pinecone, and ChromaDB. Actively upskilling in Agentic AI, exploring ReAct agents, tool-use, and multi-agent orchestration frameworks. Dedicated to continuous learning and delivering impactful, real-world AI solutions.";
+  const bio = "AI Researcher at IIT Ropar and Data Scientist building production-grade AI systems. My current research focuses on on-device phishing URL detection system using Transformer fine-tuning (MiniLM + LoRA) on 35M+ URLs, deployed as an Android app via ONNX INT8 quantization. Beyond cybersecurity AI, I build Generative AI applications — RAG pipelines, LLM-powered chatbots, and multi-document readers using LangChain, Pinecone, and ChromaDB. Actively upskilling in Agentic AI, exploring ReAct agents, tool-use, and multi-agent orchestration frameworks. Dedicated to continuous learning and delivering impactful, real-world AI solutions.";
   
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);

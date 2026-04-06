@@ -62,8 +62,8 @@ export interface SocialLink {
 // Data
 export const professionalName = "Shinu Rathod";
 export const professionalTitle = "Data Scientist & AI Researcher";
-export const professionalSummaryHero = "AI Researcher at IIT Ropar building production-grade ML systems. Specializing in Transformers, On-Device ML, NLP, Generative AI, and Cybersecurity AI.";
-export const profileImageUrl = "https://avatars.githubusercontent.com/u/62996977";
+export const professionalSummaryHero = "AI Researcher at IIT Ropar building production-grade ML/LLM based systems. Specializing in Transformers, On-Device ML, NLP, Generative AI, and Cybersecurity AI.";
+export const profileImageUrl = "/images/my_profile_pic.png";
 
 export const navLinks: NavLink[] = [
   { href: "#hero", label: "Home" },
@@ -201,7 +201,7 @@ export const experienceTimeline: TimelineEvent[] = [
 export const projectsData: Project[] = [
   {
     id: 'project-phishguard',
-    title: 'PhishGuard — On-Device Phishing URL Detection',
+    title: 'PhishGuard — On-Device Phishing URL Detection System',
     description: 'IIT Ropar research project: Production-grade phishing detection system using MiniLM-L12 Transformer + LoRA fine-tuning on 35.3M URLs. Deployed as a fully offline Android app via INT8 ONNX quantization (32.6 MB model, ~100ms inference on-device). No internet required, zero data exfiltration.',
     imageUrl: '/images/projects/project-phishguard.png',
     imageHint: 'cybersecurity AI mobile',
