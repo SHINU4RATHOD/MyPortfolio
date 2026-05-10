@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9.5pt;
+    color: #1d2838;
+    background: #fff;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ─── PAGE CONTAINER ─── */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ═══════════════════════════════════════════
+     PAGE 1
+     ═══════════════════════════════════════════ */
+
+  /* ─── HEADER ─── */
+  .header {
+    background: #111827;
+    padding: 30px 40px 24px;
+    color: #ffffff;
+  }
+
+  .header h1 {
+    font-size: 30pt;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .header .subtitle {
+    font-size: 12pt;
+    font-weight: 400;
+    color: #60a5fa;
+    letter-spacing: 0.8px;
+    margin-bottom: 2px;
+  }
+
+  .header .affiliation {
+    font-size: 8.5pt;
+    color: #9ca3af;
+    font-style: italic;
+  }
+
+  /* Contact bar */
+  .contact-bar {
+    background: #1e3a5f;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 8pt;
+    color: #dbeafe;
+    white-space: nowrap;
+  }
+
+  .contact-item svg {
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+  }
+
+  /* Accent line */
+  .accent-line {
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
+  }
+
+  /* ─── MAIN AREA (2-column) ─── */
+  .two-col {
+    display: flex;
+    height: calc(297mm - 95px - 38px - 3px); /* page - header - contact-bar - accent */
+  }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar {
+    width: 65mm;
+    background: #f8fafc;
+    border-right: 1px solid #e5e7eb;
+    padding: 22px 18px 22px 22px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  /* ─── CONTENT COLUMN ─── */
+  .content {
+    flex: 1;
+    padding: 22px 28px 22px 22px;
+    overflow: hidden;
+  }
+
+  /* ─── SECTION TITLE ─── */
+  .sec-title {
+    font-size: 7.8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #2563eb;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    margin-top: 20px;
+  }
+  .sec-title:first-child { margin-top: 0; }
+
+  .sidebar .sec-title {
+    font-size: 7pt;
+    letter-spacing: 0.4px;
+    margin-bottom: 10px;
+    margin-top: 18px;
+    border-bottom-width: 1.5px;
+  }
+  .sidebar .sec-title:first-child { margin-top: 0; }
+
+  /* ─── SUMMARY ─── */
+  .summary {
+    font-size: 9pt;
+    color: #374151;
+    line-height: 1.52;
+    text-align: justify;
+  }
+  .summary strong { color: #111827; }
+
+  /* ─── EXPERIENCE ITEM ─── */
+  .exp {
+    margin-bottom: 14px;
+  }
+  .exp:last-child { margin-bottom: 0; }
+
+  .exp-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .exp-role {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.2;
+  }
+
+  .exp-date {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #2563eb;
+    background: #eff6ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .exp-org {
+    font-size: 8.5pt;
+    color: #4b5563;
+    font-weight: 500;
+    margin-bottom: 6px;
+    margin-top: 1px;
+  }
+
+  .exp-org .badge {
+    display: inline-block;
+    background: #1d4ed8;
+    color: white;
+    font-size: 6pt;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 5px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .exp ul {
+    padding-left: 14px;
+    list-style: none;
+  }
+
+  .exp li {
+    font-size: 8.5pt;
+    color: #374151;
+    line-height: 1.5;
+    margin-bottom: 3px;
+    position: relative;
+    padding-left: 0;
+  }
+
+  .exp li::before {
+    content: '▸';
+    position: absolute;
+    left: -12px;
+    color: #3b82f6;
+    font-size: 7.5pt;
+    top: 0.5px;
+  }
+
+  .m { font-weight: 700; color: #1d4ed8; }
+
+  /* Tech tags */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 4px;
+    margin-top: 6px;
+  }
+
+  .tag {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1e40af;
+    font-size: 6.8pt;
+    font-weight: 500;
+    padding: 1.5px 7px;
+    border-radius: 3px;
+  }
+
+  /* Divider between exp items */
+  .divider {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 0 0 14px 0;
+  }
+
+  /* ─── SIDEBAR: SKILLS ─── */
+  .sk-group { margin-bottom: 12px; }
+  .sk-group:last-child { margin-bottom: 0; }
+
+  .sk-label {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 5px;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+
+  .pill {
+    font-size: 6.8pt;
+    font-weight: 600;
+    padding: 2.5px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .pill.blue { background: #1e40af; color: #fff; }
+  .pill.light { background: #dbeafe; color: #1e40af; }
+  .pill.green { background: #064e3b; color: #a7f3d0; }
+  .pill.orange { background: #7c2d12; color: #fed7aa; }
+  .pill.purple { background: #4c1d95; color: #ddd6fe; }
+  .pill.dark { background: #1f2937; color: #e5e7eb; }
+
+  /* ─── SIDEBAR: AI TOOLS ─── */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+  .tool-cell {
+    background: linear-gradient(135deg, #1e3a5f, #1d4ed8);
+    color: #fff;
+    font-size: 7pt;
+    font-weight: 600;
+    padding: 4px 6px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .tool-cell.wide { grid-column: span 2; }
+
+  /* ─── SIDEBAR: EDUCATION ─── */
+  .edu { margin-bottom: 10px; }
+  .edu:last-child { margin-bottom: 0; }
+  .edu-title { font-size: 8pt; font-weight: 700; color: #111827; line-height: 1.25; }
+  .edu-inst { font-size: 7.5pt; color: #4b5563; margin-top: 1px; }
+  .edu-date { font-size: 7pt; color: #6b7280; }
+  .edu-cgpa { font-size: 7pt; font-weight: 600; color: #059669; margin-top: 1px; }
+
+  /* ─── SIDEBAR: CERTS ─── */
+  .cert { margin-bottom: 8px; }
+  .cert-title { font-size: 7.5pt; font-weight: 600; color: #111827; }
+  .cert-sub { font-size: 7pt; color: #6b7280; }
+  .cert a { font-size: 6.5pt; color: #2563eb; text-decoration: none; }
+
+  /* ─── PAGE 2: PROJECTS ─── */
+  .proj { margin-bottom: 14px; }
+  .proj:last-child { margin-bottom: 0; }
+
+  .proj-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 2px;
+  }
+
+  .proj-name {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .proj-link {
+    font-size: 7pt;
+    color: #2563eb;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .proj-impact {
+    font-size: 8pt;
+    font-weight: 600;
+    color: #059669;
+    margin-bottom: 4px;
+  }
+  .proj-impact::before { content: '★ '; font-size: 7pt; }
+
+  .proj-desc {
+    font-size: 8.5pt;
+    color: #374151;
+    line-height: 1.55;
+    margin-bottom: 4px;
+  }
+
+  /* ─── PAGE 2 HEADER (mini) ─── */
+  .p2-header {
+    background: #111827;
+    padding: 12px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .p2-header .name {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #fff;
+  }
+  .p2-header .pg {
+    font-size: 8pt;
+    color: #9ca3af;
+  }
+  .p2-accent {
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #93c5fd);
+  }
+
+  .p2-body {
+    padding: 28px 40px;
+    height: calc(297mm - 44px - 2px);
+    overflow: hidden;
+  }
+
+  /* ─── HOBBIES ─── */
+  .hobbies {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .hobby {
+    font-size: 8pt;
+    color: #6b7280;
+  }
+
+  /* ─── SOFT SKILLS ─── */
+  .soft-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 4px;
+  }
+  .soft-pill {
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    font-size: 7.5pt;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* ─── IMPACT METRICS STRIP ─── */
+  /* .impact-strip {
+    display: flex;
+    gap: 8px;
+    margin-top: 3px;
+    margin-bottom: 2px;
+  } */
+  .impact-card {
+    flex: 1;
+    background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 100%);
+    border-radius: 6px;
+    padding: 10px 6px;
+    text-align: center;
+  }
+  .impact-num {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #60a5fa;
+    line-height: 1.1;
+  }
+  .impact-label {
+    font-size: 6.3pt;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.35;
+    margin-top: 3px;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #f8fafc;
+    border-top: 1px solid #e5e7eb;
+    padding: 8px 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer span {
+    font-size: 7pt;
+    color: #9ca3af;
+  }
+  .footer .accent {
+    color: #2563eb;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
+<!-- PAGE 1                                                                    -->
+<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Shinu Rathod</h1>
+    <div class="subtitle">Data Scientist &nbsp;&middot;&nbsp; AI Researcher &nbsp;&middot;&nbsp; ML Engineer</div>
+    <div class="affiliation">AI Researcher at IIT Ropar &mdash; Cybersecurity AI Division &nbsp;&middot;&nbsp; Rupnagar, Punjab, India</div>
+  </div>
+
+  <!-- CONTACT BAR -->
+  <div class="contact-bar">
+    <div class="contact-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012.87 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      +91 63641 63900
+    </div>
+    <div class="contact-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      shinukrathod0143@gmail.com
+    </div>
+    <div class="contact-item">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      <a href="https://www.linkedin.com/in/shinurathod-data-scientist" style="color:#dbeafe;text-decoration:none;">linkedin.com/in/shinurathod-data-scientist</a>
+    </div>
+    <div class="contact-item">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      <a href="https://github.com/SHINU4RATHOD" style="color:#dbeafe;text-decoration:none;">github.com/SHINU4RATHOD</a>
+    </div>
+  </div>
+
+  <!-- ACCENT -->
+  <div class="accent-line"></div>
+
+  <!-- TWO-COLUMN BODY -->
+  <div class="two-col">
+
+    <!-- ═══ SIDEBAR (Page 1) ═══ -->
+    <div class="sidebar">
+
+      <div class="sec-title">Technical Skills</div>
+
+      <div class="sk-group">
+        <div class="sk-label">Programming</div>
+        <div class="pills">
+          <span class="pill blue">Python</span>
+          <span class="pill blue">SQL</span>
+          <span class="pill blue">Kotlin</span>
+          <span class="pill blue">R</span>
+        </div>
+      </div>
+
+      <div class="sk-group">
+        <div class="sk-label">ML / DL Frameworks</div>
+        <div class="pills">
+          <span class="pill blue">PyTorch</span>
+          <span class="pill blue">TensorFlow</span>
+          <span class="pill blue">Keras</span>
+          <span class="pill blue">Scikit-learn</span>
+          <span class="pill blue">Hugging Face</span>
+          <span class="pill blue">LoRA / QLoRA</span>
+          <span class="pill blue">ONNX Runtime</span>
+        </div>
+      </div>
+
+      <div class="sk-group">
+        <div class="sk-label">NLP &amp; Computer Vision</div>
+        <div class="pills">
+          <span class="pill light">NLP</span>
+          <span class="pill light">Transformers</span>
+          <span class="pill light">Computer Vision</span>
+          <span class="pill light">Text Classification</span>
+        </div>
+      </div>
+
+      <div class="sk-group">
+        <div class="sk-label">Generative AI (GenAI)</div>
+        <div class="pills">
+          <span class="pill green">LLM Fine-Tuning</span>
+          <span class="pill green">Prompt Engineering</span>
+          <span class="pill green">RAG Pipelines</span>
+          <span class="pill green">LangChain</span>
+          <span class="pill green">LlamaIndex</span>
+          <span class="pill green">Pinecone</span>
+          <span class="pill green">ChromaDB</span>
+        </div>
+      </div>
+
+      <div class="sk-group">
+        <div class="sk-label">Agentic AI</div>
+        <div class="pills">
+          <span class="pill orange">AI Agents</span>
+          <span class="pill orange">ReAct Framework</span>
+          <span class="pill orange">Tool Use</span>
+          <span class="pill orange">Multi-Agent Systems</span>
+        </div>
+      </div>
+
+      <div class="sk-group">
+        <div class="sk-label">MLOps &amp; Deployment</div>
+        <div class="pills">
+          <span class="pill purple">Flask</span>
+          <span class="pill purple">FastAPI</span>
+          <span class="pill purple">Docker</span>
+          <span class="pill purple">Streamlit</span>
+          <span class="pill purple">Android / ONNX</span>
+        </div>
+      </div>
+
+      <div class="sk-group">
+        <div class="sk-label">Visualization</div>
+        <div class="pills">
+          <span class="pill light">Power BI</span>
+          <span class="pill light">Matplotlib</span>
+          <span class="pill light">Seaborn</span>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="sec-title">Education</div>
+
+      <div class="edu">
+        <div class="edu-title">Bachelor of Computer Applications (BCA)</div>
+        <div class="edu-inst">Karnataka College, Bidar, Karnataka</div>
+        <div class="edu-date">2018 &ndash; 2021</div>
+        <div class="edu-cgpa">CGPA: 7.64 / 10</div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-title">Data Science Professional Program</div>
+        <div class="edu-inst">360DigiTMG, Hyderabad</div>
+        <div class="edu-date">Feb 2023 &ndash; Feb 2024</div>
+      </div>
+
+      <!-- CERTIFICATIONS -->
+      <div class="sec-title">Certifications</div>
+
+      <div class="cert">
+        <div class="cert-title">Data Science &amp; Analytics Internship</div>
+        <div class="cert-sub">Zidio Development &middot; Dec 2024</div>
+      </div>
+      <div class="cert">
+        <div class="cert-title">Autism Detection Internship</div>
+        <div class="cert-sub">AiSPRY &middot; May 2025</div>
+      </div>
+
+    </div><!-- /sidebar -->
+
+    <!-- ═══ MAIN CONTENT (Page 1) ═══ -->
+    <div class="content">
+
+      <!-- SUMMARY -->
+      <div class="sec-title">Professional Summary</div>
+      <p class="summary">
+        AI Researcher at <strong>Indian Institutes of Technology-Ropar(IIT Ropar)</strong> and Data Scientist with hands-on expertise in building
+        <strong>production-grade ML/DL systems</strong> from research to deployment. Leading on-device
+        <strong>phishing URL detection</strong> using Transformer fine-tuning (MiniLM + LoRA) on
+        <strong>40M URLs</strong>&mdash;achieving <strong>98.91% AUC-ROC with 10% FNR, 1% FPR</strong> and deployed as an
+        Android app via ONNX INT8 quantization (<strong>32.6 MB, &lt;100ms inference</strong>). Proficient in
+        <strong>Generative AI</strong>: RAG pipelines, LLM fine-tuning, prompt engineering with LangChain,
+        Pinecone, and ChromaDB. Experienced in end-to-end MLOps (Docker, FastAPI, Streamlit).
+        Seeking an <strong>AI/ML Engineer</strong> or <strong>Data Scientist</strong> role at a product-driven organization.
+      </p>
+
+      <!-- IMPACT METRICS -->
+      <!-- <div class="impact-strip">
+        <div class="impact-card">
+          <div class="impact-num">98.91%</div>
+          <div class="impact-label">AUC-ROC on<br/>4.4M URLs</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">35.3M</div>
+          <div class="impact-label">URLs Training<br/>Dataset</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">32.6 MB</div>
+          <div class="impact-label">On-Device<br/>ONNX Model</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">91.8%</div>
+          <div class="impact-label">ASD Detection<br/>Accuracy</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">4+</div>
+          <div class="impact-label">Production AI<br/>Systems Built</div>
+        </div>
+      </div> -->
+
+      <!-- EXPERIENCE -->
+      <div class="sec-title">Work Experience</div>
+
+      <!-- IIT Ropar -->
+      <div class="exp">
+        <div class="exp-row">
+          <div class="exp-role">AI Researcher &mdash; Cybersecurity AI Division</div>
+          <div class="exp-date">2025 &ndash; Present</div>
+        </div>
+        <div class="exp-org">IIT Ropar <span class="badge">Research</span></div>
+        <ul>
+          <li>Fine-tuned <strong>MiniLM-L12-H384 Transformer + LoRA</strong> (r=32, alpha=64) on <span class="m">40M URLs Dataset</span> for phishing detection; achieved <span class="m">AUC-ROC 98.91%</span>, FNR &le;10%, and <span class="m">95.38% accuracy</span> on 4.4M-URL test set.</li>
+          <li>Designed 6-stage canonical URL preprocessing pipeline handling Unicode homoglyphs, IDNA 2008 Punycode, recursive percent-decoding (10-pass), and high-entropy blob masking across <span class="m">40M+ URLs</span>.</li>
+          <li>Deployed production model as <strong>PhishGuard Android App</strong>&mdash;ONNX INT8 quantization reduced model to <span class="m">32.6 MB</span> with <span class="m">&lt;100ms on-device inference</span>; fully offline, zero data exfiltration, validated via two-stage golden vector test.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">LoRA</span>
+          <span class="tag">ONNX Runtime</span><span class="tag">Focal Loss</span><span class="tag">Kotlin</span>
+          <span class="tag">Android</span><span class="tag">Jetpack Compose</span>
+        </div>
+      </div>
+
+      <hr class="divider"/>
+
+      <!-- AISPRY -->
+      <div class="exp">
+        <div class="exp-row">
+          <div class="exp-role">Data Scientist Intern</div>
+          <div class="exp-date">Apr 2025 &ndash; May 2025</div>
+        </div>
+        <div class="exp-org">AISPRY, Hyderabad, Telangana</div>
+        <ul>
+          <li>Built AI-powered <strong>Autism Spectrum Detection system</strong> using TensorFlow Lite + MediaPipe for pose estimation from video/webcam input; achieved <span class="m">91.8% accuracy</span>.</li>
+          <li>Integrated NLP-based multimodal analysis with a Gemini-powered chatbot for enhanced user interaction.</li>
+          <li>Deployed scalable Flask + React application using Docker; automated data pipelines reducing preprocessing time by <span class="m">15%</span>.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">TensorFlow Lite</span><span class="tag">MediaPipe</span><span class="tag">NLP</span>
+          <span class="tag">React</span><span class="tag">Flask</span><span class="tag">Docker</span><span class="tag">Gemini API</span>
+        </div>
+      </div>
+
+      <hr class="divider"/>
+
+      <!-- Zidio -->
+      <div class="exp">
+        <div class="exp-row">
+          <div class="exp-role">Data Science &amp; Analytics Intern</div>
+          <div class="exp-date">Aug 2024 &ndash; Nov 2024</div>
+        </div>
+        <div class="exp-org">Zidio Development, Bengaluru, Karnataka</div>
+        <ul>
+          <li>Developed and deployed TensorFlow-based ML models in cross-functional teams, improving system efficiency by <span class="m">15%</span>; automated data workflows with Python + SQL, boosting operational throughput by <span class="m">25%</span>.</li>
+          <li>Built interactive Power BI dashboards delivering actionable business insights to stakeholders.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">Power BI</span><span class="tag">SQL</span>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /two-col -->
+
+  <!-- Page 1 footer -->
+  <div style="position:absolute;bottom:0;left:0;right:0;background:#f8fafc;border-top:1px solid #e5e7eb;padding:6px 40px;display:flex;justify-content:space-between;">
+    <span style="font-size:7pt;color:#9ca3af;">Shinu Rathod &middot; shinukrathod0143@gmail.com &middot; +91 63641 63900</span>
+    <span style="font-size:7pt;color:#2563eb;font-weight:600;">Page 1 of 2 &nbsp;&mdash;&nbsp; Continued on next page</span>
+  </div>
+
+</div><!-- /page 1 -->
+
+
+<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
+<!-- PAGE 2                                                                    -->
+<!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
+<div class="page">
+
+  <!-- Mini header -->
+  <div class="p2-header">
+    <div class="name">Shinu Rathod</div>
+    <div class="pg">Page 2 of 2</div>
+  </div>
+  <div class="p2-accent"></div>
+
+  <div class="p2-body">
+
+    <!-- 360DigiTMG (continued from p1) -->
+    <div class="sec-title" style="margin-top:0;">Work Experience <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:7pt;color:#6b7280;">(continued)</span></div>
+    <div class="exp">
+      <div class="exp-row">
+        <div class="exp-role">Data Science Trainee</div>
+        <div class="exp-date">Feb 2023 &ndash; Feb 2024</div>
+      </div>
+      <div class="exp-org">360DigiTMG, Hyderabad, Telangana</div>
+      <ul>
+        <li>Engineered predictive maintenance classification model with Scikit-learn; reduced machine downtime by <span class="m">20%</span> through feature engineering on sensor data and failure pattern analysis.</li>
+        <li>Developed behavior detection system for AI Tutor platform using classification models, increasing user engagement by <span class="m">10%</span>; delivered Power BI dashboards for data-driven stakeholder insights.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Scikit-learn</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Power BI</span>
+      </div>
+    </div>
+
+    <!-- KEY PROJECTS -->
+    <div class="sec-title">Key Projects</div>
+
+    <div class="proj">
+      <div class="proj-row">
+        <div class="proj-name">PhishGuard &mdash; On-Device Phishing URL Detection</div>
+        <a class="proj-link" href="https://github.com/SHINU4RATHOD/PhishDetect">github.com/SHINU4RATHOD/PhishDetect</a>
+      </div>
+      <div class="proj-impact">AUC-ROC 98.91% &middot; 35.3M URLs Trained &middot; 32.6 MB ONNX INT8 &middot; &lt;100ms on-device inference</div>
+      <p class="proj-desc">
+        IIT Ropar Cybersecurity AI research: fine-tuned MiniLM-L12-H384 Transformer + LoRA (r=32, &alpha;=64) on 35.3M URLs with Focal Loss and FP16 mixed precision, achieving <strong>AUC-ROC 98.91%</strong> and <strong>95.38% accuracy</strong> on a 4.4M-URL held-out test set. Built 6-stage URL canonicalization pipeline (NFKC normalization, IDNA 2008, recursive percent-decoding, high-entropy blob masking). Deployed as PhishGuard Android app via INT8 ONNX quantization &mdash; 32.6 MB, &lt;100ms on-device inference, fully offline, zero data exfiltration.
+      </p>
+      <div class="tags">
+        <span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">LoRA</span>
+        <span class="tag">ONNX Runtime</span><span class="tag">Focal Loss</span><span class="tag">Kotlin</span>
+        <span class="tag">Android</span><span class="tag">NNAPI</span><span class="tag">Jetpack Compose</span>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <div class="proj">
+      <div class="proj-row">
+        <div class="proj-name">AI-driven Autism Spectrum Detection (ASD)</div>
+        <a class="proj-link" href="https://github.com/SHINU4RATHOD/ASD-Autistic-Spectrum-Disorders--Prediction-System">GitHub &nearr;</a>
+      </div>
+      <div class="proj-impact">91.8% accuracy &middot; End-to-end ML pipeline &middot; Supports early ASD diagnosis for clinicians</div>
+      <p class="proj-desc">
+        End-to-end ML system for Autism Spectrum Disorder prediction from video/webcam input. Leveraged MediaPipe pose estimation and TensorFlow Lite binary classification, integrated with React frontend, Flask REST API, and a Gemini-powered conversational chatbot. Deployed via Docker for scalable clinical use.
+      </p>
+      <div class="tags">
+        <span class="tag">TensorFlow Lite</span><span class="tag">MediaPipe</span><span class="tag">NLP</span>
+        <span class="tag">React</span><span class="tag">Flask</span><span class="tag">Docker</span><span class="tag">Gemini API</span>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <div class="proj">
+      <div class="proj-row">
+        <div class="proj-name">LLM-Powered RAG Applications (Medical Chatbot &amp; Code Analyzer)</div>
+        <a class="proj-link" href="https://github.com/SHINU4RATHOD/Medical-Chatbot-LLM-Pinecone-LangChain">GitHub &nearr;</a>
+      </div>
+      <div class="proj-impact">30% faster retrieval &middot; 25% code review efficiency gain &middot; RAG with source attribution</div>
+      <p class="proj-desc">
+        Built two production RAG systems using LangChain, LLMs, and vector databases: (1) Medical chatbot with Pinecone for healthcare Q&amp;A with source citations + Multi-PDF semantic search via FAISS &amp; Gemini; (2) AI code analyzer using ChromaDB for intelligent codebase understanding, semantic search, and automated review recommendations.
+      </p>
+      <div class="tags">
+        <span class="tag">LangChain</span><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Pinecone</span>
+        <span class="tag">ChromaDB</span><span class="tag">FAISS</span><span class="tag">Gemini</span><span class="tag">Streamlit</span>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <div class="proj">
+      <div class="proj-row">
+        <div class="proj-name">Optimization of Machine Downtime &mdash; Predictive Maintenance</div>
+        <a class="proj-link" href="https://github.com/SHINU4RATHOD/1.-OPTIMIZATION-OF-MACHINE-DOWNTIME">GitHub &nearr;</a>
+      </div>
+      <div class="proj-impact">20% reduction in unplanned downtime &middot; Data-driven maintenance scheduling</div>
+      <p class="proj-desc">
+        Predictive maintenance classification pipeline using Scikit-learn to minimize industrial machine downtime. Applied feature engineering on sensor telemetry data to identify critical failure patterns; reduced unplanned downtime by 20%. Delivered real-time Power BI dashboards for operations stakeholders.
+      </p>
+      <div class="tags">
+        <span class="tag">Scikit-learn</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Feature Engineering</span>
+      </div>
+    </div>
+
+    <!-- SOFT SKILLS & INTERESTS -->
+    <div class="sec-title">Additional</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:baseline;">
+      <span style="font-size:7.5pt;font-weight:600;color:#374151;">Soft Skills:</span>
+      <div class="soft-pills" style="display:inline-flex;margin-top:0;">
+        <span class="soft-pill">Problem-Solving</span>
+        <span class="soft-pill">Research &amp; Analysis</span>
+        <span class="soft-pill">Cross-Functional Collaboration</span>
+        <span class="soft-pill">Technical Communication</span>
+        <span class="soft-pill">Agile / Scrum</span>
+      </div>
+    </div>
+    <div style="margin-top:8px;font-size:7.5pt;color:#6b7280;">
+      <span style="font-weight:600;color:#374151;">Interests:</span>
+      Reading research papers &amp; tech blogs &nbsp;&middot;&nbsp; Open-source contributions &nbsp;&middot;&nbsp; Fitness &amp; running &nbsp;&middot;&nbsp; Networking
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <span>Shinu Rathod &middot; shinukrathod0143@gmail.com &middot; +91 63641 63900</span>
+      <span class="accent">github.com/SHINU4RATHOD &nbsp;|&nbsp; linkedin.com/in/shinurathod-data-scientist</span>
+    </div>
+
+  </div><!-- /p2-body -->
+</div><!-- /page 2 -->
+
+</body>
+</html>

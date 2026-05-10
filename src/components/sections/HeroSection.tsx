@@ -6,7 +6,7 @@ import { professionalName, professionalSummaryHero, socialLinks, profileImageUrl
 import Image from 'next/image';
 
 export default function HeroSection() {
-  const resumeUrl = "https://drive.google.com/file/d/17Tb5gf3lv_Kg5nBnpMMvpNfUxwC6MOxo/view?usp=drive_link";
+  const resumeUrl = "/SHINURATHOD_DATASCIENCE_AIML_02Y.pdf";
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-background via-slate-900 to-background py-20 overflow-hidden">
@@ -61,7 +61,7 @@ export default function HeroSection() {
               <Link href="#contact">Contact Me</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="shadow-lg hover:shadow-accent/30 transition-all border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+              <a href={resumeUrl} download="SHINURATHOD_DATASCIENCE_AIML_02Y.pdf">
                 <Download className="mr-2 h-5 w-5" suppressHydrationWarning /> Download Resume
               </a>
             </Button>
